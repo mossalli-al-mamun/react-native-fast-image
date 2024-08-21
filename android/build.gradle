@@ -3,6 +3,7 @@ def safeExtGet(prop, fallback) {
 }
 
 buildscript {
+    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['RNGH_kotlinVersion']
     // The Android Gradle plugin is only required when opening the android folder stand-alone.
     // This avoids unnecessary downloads and potential conflicts when the library is included as a
     // module dependency in an application project.
@@ -12,6 +13,7 @@ buildscript {
             mavenCentral()
         }
         dependencies {
+            classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
             classpath 'com.android.tools.build:gradle:3.5.3'
         }
     }
